@@ -1,51 +1,36 @@
-# AI Crypto Futures Bot — PAPER default, LIVE optional (Binance Futures)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Production-oriented, 5 models + Meta, walk-forward, LIVE safety-guarded.
+## Getting Started
 
-## Quick Start PAPER (default aman)
+First, run the development server:
+
 ```bash
-cd ai-crypto-trading-bot
-python3.10 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env  # TRADING_MODE=PAPER
-uvicorn api.main:app --host 127.0.0.1 --port 8000  # /docs
-python3 -m http.server 3001 --directory dashboard  # http://127.0.0.1:3001/index.html
-pytest -q  # 46 passed
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## TESTNET
-```env
-TRADING_MODE=TESTNET
-BINANCE_API_KEY=...
-BINANCE_API_SECRET=...
-BINANCE_TESTNET=true
-```
-`POST /exchange/test-connection` → CONNECTED.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## LIVE_DRY_RUN (production data tanpa order)
-```env
-TRADING_MODE=LIVE
-BINANCE_API_KEY=...
-BINANCE_API_SECRET=...
-LIVE_DRY_RUN=true
-```
-Run `python -c "from bot.execution.executor import execute"` → `dry_run` intended.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## LIVE (real money) — butuh arm
-```env
-TRADING_MODE=LIVE
-BINANCE_API_KEY=...
-BINANCE_API_SECRET=...
-BINANCE_TESTNET=false
-LIVE_DRY_RUN=false
-DASHBOARD_TOKEN=secret123
-MAX_LEVERAGE=5 RISK_PER_TRADE=0.01 etc
-```
-Checklist: `GET /trading/mode` `GET /exchange/permissions` (key ****ABCD, withdrawal false) `GET /health`.
-Arm: `POST /trading/arm?confirmation=ENABLE%20LIVE%20TRADING` (Bearer DASHBOARD_TOKEN jika set).
-Emergency: `POST /bot/emergency-stop` → cancel all, live_state EMERGENCY, manual re-arm.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Docs
-docs/LIVE_TRADING_AUDIT.md, BINANCE_SETUP.md, LIVE_TRADING.md, SECURITY.md, ORDER_EXECUTION.md, FAILURE_RECOVERY.md
-# Porto-Lukman-David
-# portofolio-lukman-david-
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
